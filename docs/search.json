@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "posts/post_2/index.html",
+    "href": "posts/post_2/index.html",
+    "title": "Tutorial - Logistic Regression",
+    "section": "",
+    "text": "Now, let us look at how to create an actual model by looking at a Logistic Regression model."
+  },
+  {
+    "objectID": "posts/post_2/index.html#prerequisites",
+    "href": "posts/post_2/index.html#prerequisites",
+    "title": "Tutorial - Logistic Regression",
+    "section": "Prerequisites",
+    "text": "Prerequisites\nBefore we begin, we need to ensure we have a few things:\n\nPython: This is a programming language. You can follow this tutorial to install it.\nscikit-learn: This is a very popular Python package, that has tools to help you apply machine learning models. The instructions to install it can be found here.\nDataset: We are going to focus on the creation of a Logistic Regression model, but we first need data. For this tutorial, we will be using the dataset found here. Save it as a .csv file."
+  },
+  {
+    "objectID": "posts/post_2/index.html#data-handling",
+    "href": "posts/post_2/index.html#data-handling",
+    "title": "Tutorial - Logistic Regression",
+    "section": "Data Handling",
+    "text": "Data Handling\nNow, create a new file in the same location that the .csv file was saved. You can name it anything, but ensure that it has the file extension .py. Then open this file in any editor of your choice!\nPlace put the following code in your .py file:\n\nimport pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\n\nThese are known as imports, and they are needed in order to apply the functionality from scikit-learn to your program!\nNext, it would be useful to actually load in the data we downloaded, so the program has access to it. Assuming your .py file and your .csv file is in the same location, you can add the following to your .py file:\n\ndata = pd.read_csv(\"pokemon.csv\")\n\nIn my case, I named the file pokemon.csv, but you should put the name what you saved the file as.\nYou can preview your data by adding in the following and running the .py file:\n\nprint(data)\n\nNow that we have the data loaded in, we should be clear of the goal of our model. In this case, we want the model to predict whether a Pokemon is legendary or not based on the given stats. Therefore, the Legendary column of our data is what is known as the “target” (X) and all other columns are known as the “features” (y). Also based on the goal, we do not consider the Name, Type 1 Type 2 and Generation columns. As with most models, we should randomly split the data into training and testing sets. This is a standard practice in Machine Learning, to properly separate the data that model learns from and the data that the model is evaluated on. These steps can be done as follows:\n\nX = data[data[\"Total\",\"HP\",\"Attack\",\"Defense\",\"Sp. Atk\",\"Sp. Def\",\"Speed\"]]\ny = data[\"Legendary\"]\nX_train, X_test, y_train, y_test = train_test_split(X, y)"
+  },
+  {
+    "objectID": "posts/post_2/index.html#training",
+    "href": "posts/post_2/index.html#training",
+    "title": "Tutorial - Logistic Regression",
+    "section": "Training",
+    "text": "Training\nGreat! Now that we have our training and testing data, let us create and fit the model. scikit-learn makes this very simple!\n\nlogistic = LogisticRegression()\nlogistic.fit(X_train, y_train)\n\nAnd just like that, we have a trained Logistic Regression model. But how well is it doing? We can check this by evaluating it on test data to see how well the model performs on the other portion of unseen data."
+  },
+  {
+    "objectID": "posts/post_2/index.html#testing",
+    "href": "posts/post_2/index.html#testing",
+    "title": "Tutorial - Logistic Regression",
+    "section": "Testing",
+    "text": "Testing\n\nscore = logistic.score(X_test, y_test)\nprint(score)\n\nThe closer our score is to 1, the better."
+  },
+  {
+    "objectID": "posts/post_2/index.html#predicting",
+    "href": "posts/post_2/index.html#predicting",
+    "title": "Tutorial - Logistic Regression",
+    "section": "Predicting",
+    "text": "Predicting\nFinally, we now can test the model on new data, to see how it performs. You can try this with your model to see if it predicts correctly. In the cell below, we are giving the stats for the Pokemon “Mewtwo” and “Girafarig” to the model. Note this cell does give a warning, but we know the data was passed in the correct order, so we can disgard this warning.\n\nmewtwo = logistic.predict([[680,106,110,90,154,90,130]])\ngirafarig = logistic.predict([[455,70,80,65,90,65,85]])\nprint(mewtwo)\nprint(girafarig)\n\n\n\n\nGirafarig: Image from https://pokemondb.net/artwork/girafarig"
+  },
+  {
+    "objectID": "posts/post_2/index.html#conclusion",
+    "href": "posts/post_2/index.html#conclusion",
+    "title": "Tutorial - Logistic Regression",
+    "section": "Conclusion",
+    "text": "Conclusion\nCongratulations! You have now created your first working Machine Learning model! Feel free to try this on other Pokemon stats to see how the model does!"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "How to Create a Simple Machine Learning Model",
+    "section": "",
+    "text": "Tutorial - Logistic Regression\n\n\n\n\n\n\ntutorial\n\n\n\n\n\n\n\n\n\nJan 17, 2025\n\n\nTimothy Singh\n\n\n\n\n\n\n\n\n\n\n\n\nWhat is Machine Learning?\n\n\n\n\n\n\nintro\n\n\n\n\n\n\n\n\n\nJan 15, 2025\n\n\nTimothy Singh\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "posts/post_1/index.html",
+    "href": "posts/post_1/index.html",
+    "title": "What is Machine Learning?",
+    "section": "",
+    "text": "Welcome to this blog on creating a Simple Machine Learning model. Let us go into the basics of Machine Learning before we start the tutorial.\nYou might have heard the terms “machine learning” and “artifical intelligence,” but what are they exactly?\n\n\n\nImage from https://www.istockphoto.com/\n\n\nWell, Machine Learning refers to subset of Arifical Intelligence that focuses on having a computer learn from data to find patterns/ trends or make predictions. This is achieved by using “models”. There are several types of models, which all excel in different types of tasks. In this case, we want a model that assigns data to a particular category. The names of such models are:\n\nLogistic Regression\nk-Nearest Neighbours\nDecision Trees\nNaive Bayes\nSupport Vector Machines\n\nMore generally, Artificial Intelligence is a broad field in Computer Science that focuses on developing systems that can simulate human intelligence by performing actions or solving problems. According to Statistica, the global market size of Artifical Intelligence is projected to reach US$243.7B in 2025!\nHere are some examples of popular AI systems that are used today. You may have heard of some of them!\n\nChatGPT\nGemini\nDALL-E\nGitHub Copilot"
+  }
+]

@@ -1,0 +1,97 @@
+---
+title: "Tutorial - Logistic Regression"
+author: "Timothy Singh"
+date: "2025-01-17"
+categories: [tutorial]
+image: "logistic.png"
+execute:
+  eval: false
+---
+
+Now, let us look at how to create an actual model by looking at a **Logistic Regression** model.
+
+## Prerequisites
+
+Before we begin, we need to ensure we have a few things:
+
+* **Python:**
+This is a programming language. You can follow [this tutorial](https://www.digitalocean.com/community/tutorials/install-python-windows-10) to install it.
+
+* **scikit-learn:**
+This is a very popular Python package, that has tools to help you apply machine learning models. The instructions to install it can be found [here](https://scikit-learn.org/1.6/install.html). 
+
+* **Dataset:**
+We are going to focus on the creation of a Logistic Regression model, but we first need data. For this tutorial, we will be using the dataset found [here](https://gist.githubusercontent.com/armgilles/194bcff35001e7eb53a2a8b441e8b2c6/raw/92200bc0a673d5ce2110aaad4544ed6c4010f687/pokemon.csv). Save it as a `.csv` file.
+
+
+## Data Handling
+
+Now, create a new file in the same location that the `.csv` file was saved. You can name it anything, but ensure that it has the file extension `.py`. Then open this file in any editor of your choice!
+
+Place put the following code in your `.py` file:
+```{python, execute=FALSE}
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+```
+
+These are known as imports, and they are needed in order to apply the functionality from scikit-learn to your program!
+
+Next, it would be useful to actually load in the data we downloaded, so the program has access to it.  Assuming your `.py` file and your `.csv` file is in the same location, you can add the following to your `.py` file:
+
+```{python, execute=FALSE}
+data = pd.read_csv("pokemon.csv")
+```
+
+In my case, I named the file `pokemon.csv`, but you should put the name what you saved the file as.
+
+You can preview your data by adding in the following and running the `.py` file:
+```{python, execute=FALSE}
+print(data)
+```
+
+Now that we have the data loaded in, we should be clear of the goal of our model. In this case, we want the model to **predict whether a Pokemon is legendary or not based on the given stats.** Therefore, the `Legendary` column of our data is what is known as the "target" (X) and all other columns are known as the "features" (y). Also based on the goal, we do not consider the `Name`, `Type 1`	`Type 2` and `Generation` columns. As with most models, we should randomly split the data into training and testing sets. This is a standard practice in Machine Learning, to properly separate the data that model learns from and the data that the model is evaluated on. These steps can be done as follows:
+
+```{python, execute=FALSE}
+X = data[data["Total","HP","Attack","Defense","Sp. Atk","Sp. Def","Speed"]]
+y = data["Legendary"]
+X_train, X_test, y_train, y_test = train_test_split(X, y)
+```
+
+## Training
+
+Great! Now that we have our training and testing data, let us create and fit the model. scikit-learn makes this very simple!
+
+```{python, execute=FALSE}
+logistic = LogisticRegression()
+logistic.fit(X_train, y_train)
+```
+
+And just like that, we have a trained Logistic Regression model. But how well is it doing? We can check this by evaluating it on test data to see how well the model performs on the other portion of unseen data.
+
+## Testing
+
+```{python, excute=FALSE}
+score = logistic.score(X_test, y_test)
+print(score)
+```
+
+The closer our score is to 1, the better.
+
+## Predicting
+
+Finally, we now can test the model on new data, to see how it performs. You can try this with your model to see if it predicts correctly. In the cell below, we are giving the stats for the Pokemon "Mewtwo" and "Girafarig" to the model. Note this cell does give a warning, but we know the data was passed in the correct order, so we can disgard this warning.
+
+```{python, execute=FALSE}
+mewtwo = logistic.predict([[680,106,110,90,154,90,130]])
+girafarig = logistic.predict([[455,70,80,65,90,65,85]])
+print(mewtwo)
+print(girafarig)
+```
+
+![Girafarig: Image from https://pokemondb.net/artwork/girafarig](girafarig.jpg){width=25% height=25%}
+
+
+## Conclusion
+
+**Congratulations!** You have now created your first working Machine Learning model! Feel free to try this on other Pokemon stats to see how the model does!

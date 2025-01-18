@@ -1,0 +1,34 @@
+---
+title: "What is Machine Learning?"
+author: "Timothy Singh"
+date: "2025-01-15"
+categories: [intro]
+image: "ml.jpg"
+---
+
+Welcome to this blog on creating a Simple Machine Learning model. Let us go into the basics of Machine Learning before we start the tutorial.
+
+You might have heard the terms "machine learning" and "artifical intelligence," but what are they exactly? 
+
+![Image from https://www.istockphoto.com/](thinking.jpg){width=40% height=40%}
+
+Well, **Machine Learning** refers to subset of Arifical Intelligence that focuses on having a computer learn from data to find patterns/ trends or make predictions. This is achieved by using "models". 
+There are several types of models, which all excel in different types of tasks. In this case, we want a model that assigns data to a particular category. The names of such models are:
+
+* Logistic Regression
+* k-Nearest Neighbours
+* Decision Trees
+* Naive Bayes
+* Support Vector Machines
+
+More generally, **Artificial Intelligence** is a broad field in Computer Science that focuses on developing systems that can simulate human intelligence by performing actions or solving problems. According to [Statistica](https://www.statista.com/outlook/tmo/artificial-intelligence/worldwide#), the global market size of Artifical Intelligence is projected to reach US$243.7B in 2025!
+
+Here are some examples of popular AI systems that are used today. You may have heard of some of them!
+
+* [ChatGPT](https://chatgpt.com/)
+* [Gemini](https://gemini.google.com/app)
+* [DALL-E](https://openai.com/index/dall-e-2/)
+* [GitHub Copilot](https://github.com/features/copilot)
+
+
+
